@@ -1,0 +1,31 @@
+aid: finops-foundation
+name: FinOps Foundation
+description: >-
+  The FinOps Foundation is a place for practitioners to advance your career
+  through connections, best practices, education, and specifications. 
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - API
+created: '2026-01-02'
+modified: '2026-01-02'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/finops-foundation/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: finops-foundation:finops-foundation
+    name: FinOps Foundation
+    description: >-
+      The FinOps Foundation is a place for practitioners to advance your career
+      through connections, best practices, education, and specifications. 
+    humanURL: ' https://www.finops.org/'
+    tags:
+      - API
+    properties:
+      - type: Documentation
+        url: ' https://www.finops.org/'
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
