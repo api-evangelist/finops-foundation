@@ -8,9 +8,9 @@ apis:
       - FinOps
       - Costs
       - Budgets
-    humanURL: ' https://www.finops.org/'
+    humanURL: https://www.finops.org/
     properties:
-      - url: ' https://www.finops.org/'
+      - url: https://www.finops.org/
         type: Documentation
     description: >-
       The FinOps Foundation is a vendor-neutral community under the Linux
@@ -33,7 +33,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2026-01-02'
-modified: '2026-01-02'
+modified: '2026-01-03'
 position: Consumer
 description: >-
   The FinOps Foundation aims to help organizations optimize their cloud spending
