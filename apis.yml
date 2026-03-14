@@ -2,28 +2,37 @@ aid: finops-foundation
 url: >-
   https://raw.githubusercontent.com/api-evangelist/finops-foundation/refs/heads/main/apis.yml
 apis:
-  - aid: finops-foundation:finops-foundation
-    name: FinOps Foundation
+  - aid: finops-foundation:focus-cost-and-usage
+    name: FOCUS Cost and Usage API
     tags:
       - FinOps
       - Costs
       - Budgets
-    humanURL: https://www.finops.org/
+      - Billing
+      - Cloud
+      - FOCUS
+    humanURL: https://focus.finops.org/
     properties:
-      - url: https://www.finops.org/
+      - url: https://focus.finops.org/focus-specification/v1-3/
+        type: Documentation
+      - url: >-
+          openapi/finops-foundation-focus-cost-and-usage-openapi.yml
+        type: OpenAPI
+      - url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec
+        type: GitHubRepository
+      - url: https://focus.finops.org/focus-columns/
         type: Documentation
     description: >-
-      The FinOps Foundation is a vendor-neutral community under the Linux
-      Foundation that advances the practice of cloud financial management
-      (FinOps). It stewards the FinOps Framework, common language, and best
-      practices that help engineering, finance, and business teams collaborate
-      to manage cloud cost and value. The foundation convenes a global community
-      through working groups, events, and an active Slack; publishes research
-      such as the annual State of FinOps; and maintains standards and open
-      specifications like FOCUS to normalize cost and usage data. It also offers
-      training and certifications for practitioners and platforms, a tools
-      landscape, and practical guidance to help organizations progress from
-      visibility to optimization to ongoing operations at scale.
+      An API modeled on the FinOps Open Cost and Usage Specification (FOCUS)
+      v1.3, the open standard maintained by the FinOps Foundation under the
+      Linux Foundation that defines a common schema for cloud, SaaS, and other
+      technology billing data. FOCUS normalizes billing datasets across
+      providers, defining standardized columns (dimensions and metrics),
+      column-specific requirements, and spec-wide attributes. The v1.3
+      specification, ratified December 2025, introduces the Contract Commitment
+      dataset, split cost allocation columns, and data completeness and recency
+      metadata. Major cloud providers including AWS, Azure, GCP, OCI, and
+      Tencent support the FOCUS format for billing data exports.
 name: FinOps Foundation
 tags:
   - FinOps
@@ -33,7 +42,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2026-01-02'
-modified: '2026-01-03'
+modified: '2026-03-14'
 position: Consumer
 description: >-
   The FinOps Foundation aims to help organizations optimize their cloud spending

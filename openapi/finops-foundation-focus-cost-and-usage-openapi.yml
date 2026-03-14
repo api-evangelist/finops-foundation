@@ -1,0 +1,923 @@
+openapi: 3.1.0
+info:
+  title: FOCUS Cost and Usage API
+  description: >-
+    An API modeled on the FinOps Open Cost and Usage Specification (FOCUS) v1.3,
+    which defines a standard schema for cloud, SaaS, and other technology billing
+    data. FOCUS normalizes billing datasets across providers to reduce complexity
+    for FinOps practitioners. This specification models the Cost and Usage dataset
+    and the Contract Commitment dataset defined by the FOCUS standard, enabling
+    programmatic access to FOCUS-compliant billing data. The FOCUS specification
+    is maintained by the FinOps Foundation under the Linux Foundation.
+  version: 1.3.0
+  contact:
+    name: FinOps Foundation
+    url: https://www.finops.org/
+  license:
+    name: Community Specification License 1.0
+    url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/main/LICENSE
+  x-focus-version: '1.3'
+externalDocs:
+  description: FOCUS Specification v1.3
+  url: https://focus.finops.org/focus-specification/v1-3/
+servers:
+  - url: https://api.example.com/focus/v1
+    description: Example FOCUS-compliant API server
+tags:
+  - name: Cost and Usage
+    description: >-
+      Endpoints for querying FOCUS-compliant cost and usage data, the primary
+      dataset defined by the FOCUS specification.
+  - name: Contract Commitments
+    description: >-
+      Endpoints for querying contract commitment data, a supplemental dataset
+      introduced in FOCUS v1.3 that isolates contract terms from cost and usage
+      rows.
+  - name: Schema Metadata
+    description: >-
+      Endpoints for retrieving metadata about the FOCUS dataset schema, including
+      column definitions, data types, and version information.
+paths:
+  /cost-and-usage:
+    get:
+      operationId: listCostAndUsage
+      summary: List cost and usage records
+      description: >-
+        Retrieves FOCUS-compliant cost and usage records. The response conforms
+        to the FOCUS Cost and Usage dataset schema, providing normalized billing
+        data with standardized columns for dimensions and metrics.
+      tags:
+        - Cost and Usage
+      parameters:
+        - name: billingPeriodStart
+          in: query
+          description: >-
+            Filter by billing period start date (inclusive). Format is
+            date-time per RFC 3339.
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: billingPeriodEnd
+          in: query
+          description: >-
+            Filter by billing period end date (exclusive). Format is
+            date-time per RFC 3339.
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: chargeCategory
+          in: query
+          description: >-
+            Filter by charge category (e.g., Usage, Purchase, Tax,
+            Credit, Adjustment).
+          required: false
+          schema:
+            type: string
+            enum:
+              - Usage
+              - Purchase
+              - Tax
+              - Credit
+              - Adjustment
+        - name: providerName
+          in: query
+          description: Filter by the name of the entity that made the resource or service available.
+          required: false
+          schema:
+            type: string
+        - name: serviceName
+          in: query
+          description: Filter by the display name of the service that was purchased.
+          required: false
+          schema:
+            type: string
+        - name: serviceCategory
+          in: query
+          description: >-
+            Filter by the highest-level classification of a service
+            (e.g., Compute, Storage, Networking, Database).
+          required: false
+          schema:
+            type: string
+        - name: region
+          in: query
+          description: Filter by the isolated geographic area where a resource is provisioned or a service is provided.
+          required: false
+          schema:
+            type: string
+        - name: resourceId
+          in: query
+          description: Filter by unique identifier assigned to a resource by the provider.
+          required: false
+          schema:
+            type: string
+        - name: subAccountId
+          in: query
+          description: Filter by the identifier for a sub account.
+          required: false
+          schema:
+            type: string
+        - name: billingCurrency
+          in: query
+          description: Filter by the currency that a charge was billed in.
+          required: false
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          description: Number of records to return per page.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10000
+            default: 1000
+        - name: pageToken
+          in: query
+          description: Token for retrieving the next page of results.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A paginated list of FOCUS cost and usage records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostAndUsageResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cost-and-usage/export:
+    post:
+      operationId: exportCostAndUsage
+      summary: Export cost and usage data
+      description: >-
+        Initiates an export of FOCUS-compliant cost and usage data for a
+        specified billing period. Returns a job identifier that can be used
+        to check the status and retrieve the exported data.
+      tags:
+        - Cost and Usage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+      responses:
+        '202':
+          description: Export job accepted and processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJobResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cost-and-usage/export/{jobId}:
+    get:
+      operationId: getCostAndUsageExportStatus
+      summary: Get cost and usage export job status
+      description: >-
+        Retrieves the status of a previously initiated cost and usage data
+        export job.
+      tags:
+        - Cost and Usage
+      parameters:
+        - name: jobId
+          in: path
+          description: The unique identifier for the export job.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Export job status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJobResponse'
+        '404':
+          description: Export job not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /contract-commitments:
+    get:
+      operationId: listContractCommitments
+      summary: List contract commitment records
+      description: >-
+        Retrieves contract commitment records as defined in the FOCUS v1.3
+        supplemental dataset. Contract commitments isolate contract terms
+        such as start and end dates, remaining units, and descriptions
+        from cost and usage rows.
+      tags:
+        - Contract Commitments
+      parameters:
+        - name: commitmentDiscountId
+          in: query
+          description: Filter by the identifier assigned to a commitment discount by the provider.
+          required: false
+          schema:
+            type: string
+        - name: billingAccountId
+          in: query
+          description: Filter by the unique identifier for a billing account.
+          required: false
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          description: Number of records to return per page.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10000
+            default: 1000
+        - name: pageToken
+          in: query
+          description: Token for retrieving the next page of results.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A paginated list of contract commitment records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractCommitmentResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /schema:
+    get:
+      operationId: getSchemaMetadata
+      summary: Get FOCUS schema metadata
+      description: >-
+        Retrieves metadata about the FOCUS dataset schema, including column
+        definitions, data types, FOCUS version, and data generator version
+        information.
+      tags:
+        - Schema Metadata
+      responses:
+        '200':
+          description: FOCUS schema metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaMetadata'
+        '401':
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for FOCUS API access.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key authentication for FOCUS API access.
+  schemas:
+    CostAndUsageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostAndUsageRecord'
+        nextPageToken:
+          type: string
+          description: Token to retrieve the next page of results. Null if no more pages.
+          nullable: true
+        totalRecords:
+          type: integer
+          description: Total number of records matching the query.
+        dataLastUpdated:
+          type: string
+          format: date-time
+          description: Timestamp indicating when the dataset was last updated.
+        dataCompleteness:
+          type: string
+          enum:
+            - Complete
+            - Incomplete
+          description: Indicates whether the data for the requested period is complete or subject to revision.
+      required:
+        - data
+    CostAndUsageRecord:
+      type: object
+      description: >-
+        A single cost and usage record conforming to the FOCUS specification.
+        Contains dimensions (qualitative values for categorization and filtering)
+        and metrics (quantitative values for measurement).
+      properties:
+        AvailabilityZone:
+          type: string
+          nullable: true
+          description: >-
+            A provider-assigned identifier for a physically separated and
+            isolated area within a region that provides high availability
+            and fault tolerance.
+        BilledCost:
+          type: number
+          description: >-
+            A charge serving as the basis for invoicing, inclusive of the
+            impacts of all reduced rates and discounts while excluding the
+            amortization of relevant purchases. MUST NOT be null.
+        BillingAccountId:
+          type: string
+          description: >-
+            The unique identifier for a billing account. MUST NOT be null.
+        BillingAccountName:
+          type: string
+          description: >-
+            The display name assigned to a billing account.
+        BillingCurrency:
+          type: string
+          description: >-
+            The currency that a charge was billed in. Represented as a
+            three-letter ISO 4217 currency code. MUST NOT be null.
+        BillingPeriodEnd:
+          type: string
+          format: date-time
+          description: >-
+            The exclusive end date and time of the billing period. MUST NOT
+            be null.
+        BillingPeriodStart:
+          type: string
+          format: date-time
+          description: >-
+            The inclusive start date and time of the billing period. MUST
+            NOT be null.
+        CapacityReservationId:
+          type: string
+          nullable: true
+          description: >-
+            The identifier assigned to a capacity reservation by the provider.
+            Introduced in FOCUS v1.3.
+        ChargeCategory:
+          type: string
+          enum:
+            - Usage
+            - Purchase
+            - Tax
+            - Credit
+            - Adjustment
+          description: >-
+            The highest-level classification of a charge based on the nature
+            of how it is billed. MUST NOT be null.
+        ChargeClass:
+          type: string
+          nullable: true
+          enum:
+            - Correction
+          description: >-
+            Indicates whether the row represents a correction to one or more
+            charges invoiced in a previous billing period.
+        ChargeDescription:
+          type: string
+          description: >-
+            A self-contained summary of the charge's purpose and price.
+        ChargeFrequency:
+          type: string
+          enum:
+            - One-Time
+            - Recurring
+            - Usage-Based
+          description: >-
+            Indicates how often a charge will occur. MUST NOT be null.
+        ChargePeriodEnd:
+          type: string
+          format: date-time
+          description: >-
+            The exclusive end date and time of a charge period. MUST NOT
+            be null.
+        ChargePeriodStart:
+          type: string
+          format: date-time
+          description: >-
+            The inclusive start date and time of a charge period. MUST NOT
+            be null.
+        CommitmentDiscountCategory:
+          type: string
+          nullable: true
+          enum:
+            - Spend
+            - Usage
+          description: >-
+            Indicates whether the commitment discount is based on usage
+            quantity or cost.
+        CommitmentDiscountId:
+          type: string
+          nullable: true
+          description: >-
+            The identifier assigned to a commitment discount by the provider.
+        CommitmentDiscountName:
+          type: string
+          nullable: true
+          description: >-
+            The display name assigned to a commitment discount.
+        CommitmentDiscountQuantity:
+          type: number
+          nullable: true
+          description: >-
+            The amount of a commitment discount purchased or accounted for
+            in commitment discount-related rows.
+        CommitmentDiscountStatus:
+          type: string
+          nullable: true
+          enum:
+            - Used
+            - Unused
+          description: >-
+            Indicates whether the charge corresponds to the consumption of
+            a commitment discount or the unused portion.
+        CommitmentDiscountType:
+          type: string
+          nullable: true
+          description: >-
+            A provider-assigned label describing the type of commitment
+            discount (e.g., Reserved Instance, Savings Plan).
+        CommitmentDiscountUnit:
+          type: string
+          nullable: true
+          description: >-
+            The provider-specified measurement unit for the commitment
+            discount quantity.
+        ConsumedQuantity:
+          type: number
+          nullable: true
+          description: >-
+            The volume of a given resource or service used, based on the
+            consumed unit.
+        ConsumedUnit:
+          type: string
+          nullable: true
+          description: >-
+            The provider-specified measurement unit indicating how a
+            resource or service was consumed.
+        ContractedCost:
+          type: number
+          description: >-
+            The cost calculated by multiplying contracted unit price and the
+            corresponding pricing quantity. MUST NOT be null.
+        ContractedUnitPrice:
+          type: number
+          nullable: true
+          description: >-
+            The agreed-upon unit price for a single pricing unit of the
+            associated resource or service.
+        EffectiveCost:
+          type: number
+          description: >-
+            The amortized cost of the charge after applying all reduced rates,
+            discounts, and the applicable portion of relevant prepaid
+            purchases. MUST NOT be null.
+        InvoiceIssuerName:
+          type: string
+          description: >-
+            The name of the entity responsible for invoicing for the
+            resources or services consumed. MUST NOT be null.
+        ListCost:
+          type: number
+          description: >-
+            The cost calculated by multiplying list unit price and the
+            corresponding pricing quantity. MUST NOT be null.
+        ListUnitPrice:
+          type: number
+          nullable: true
+          description: >-
+            The suggested provider-published unit price for a single pricing
+            unit of the associated resource or service.
+        PricingCategory:
+          type: string
+          nullable: true
+          enum:
+            - On-Demand
+            - Commitment-Based
+            - Dynamic
+            - Other
+          description: >-
+            Describes the pricing model used for a charge at the time of
+            use or purchase.
+        PricingQuantity:
+          type: number
+          nullable: true
+          description: >-
+            The volume of a given resource or service used or purchased,
+            based on the pricing unit.
+        PricingUnit:
+          type: string
+          nullable: true
+          description: >-
+            The provider-specified measurement unit for determining unit
+            prices and pricing quantities.
+        ProviderName:
+          type: string
+          description: >-
+            The name of the entity that made the resource or service
+            available for purchase. MUST NOT be null.
+        PublisherName:
+          type: string
+          description: >-
+            The name of the entity that produced the resource or service
+            that was purchased.
+        Region:
+          type: string
+          nullable: true
+          description: >-
+            An isolated geographic area where a resource is provisioned in
+            or a service is provided from.
+        ResourceId:
+          type: string
+          nullable: true
+          description: >-
+            The unique identifier assigned to a resource by the provider.
+        ResourceName:
+          type: string
+          nullable: true
+          description: >-
+            The display name assigned to a resource.
+        ResourceType:
+          type: string
+          nullable: true
+          description: >-
+            The type of resource the charge applies to.
+        ServiceCategory:
+          type: string
+          description: >-
+            The highest-level classification of a service based on the
+            core function of the service (e.g., Compute, Storage,
+            Networking, Database). MUST NOT be null.
+        ServiceName:
+          type: string
+          description: >-
+            The display name of the service that was purchased. MUST NOT
+            be null.
+        ServiceSubcategory:
+          type: string
+          nullable: true
+          description: >-
+            A secondary classification of a service, providing further
+            detail beyond ServiceCategory.
+        SkuId:
+          type: string
+          nullable: true
+          description: >-
+            The unique identifier for the SKU that was used or purchased.
+        SkuPriceId:
+          type: string
+          nullable: true
+          description: >-
+            The unique identifier for the SKU inclusive of all pricing
+            variations such as tiering and discounts.
+        SubAccountId:
+          type: string
+          nullable: true
+          description: >-
+            The identifier assigned to a grouping of resources or services,
+            often used to manage access and/or cost.
+        SubAccountName:
+          type: string
+          nullable: true
+          description: >-
+            The display name assigned to a sub account.
+        Tags:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+          description: >-
+            A set of key-value pairs applied to a resource. Tags are commonly
+            used for cost allocation, access control, and automation.
+        x_SplitCostAllocationMethod:
+          type: string
+          nullable: true
+          description: >-
+            The method used by the data generator for split cost allocation
+            across workloads. Introduced in FOCUS v1.3.
+        x_SplitCostAllocationPercentage:
+          type: number
+          nullable: true
+          description: >-
+            The percentage of the cost allocated to this record via split
+            cost allocation. Introduced in FOCUS v1.3.
+      required:
+        - BilledCost
+        - BillingAccountId
+        - BillingCurrency
+        - BillingPeriodEnd
+        - BillingPeriodStart
+        - ChargeCategory
+        - ChargeFrequency
+        - ChargePeriodEnd
+        - ChargePeriodStart
+        - ContractedCost
+        - EffectiveCost
+        - InvoiceIssuerName
+        - ListCost
+        - ProviderName
+        - ServiceCategory
+        - ServiceName
+    ContractCommitmentResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractCommitmentRecord'
+        nextPageToken:
+          type: string
+          nullable: true
+          description: Token to retrieve the next page of results.
+        totalRecords:
+          type: integer
+          description: Total number of records matching the query.
+      required:
+        - data
+    ContractCommitmentRecord:
+      type: object
+      description: >-
+        A contract commitment record as defined in FOCUS v1.3. Isolates
+        contract terms including start and end dates, remaining units, and
+        descriptions from cost and usage rows.
+      properties:
+        CommitmentDiscountId:
+          type: string
+          description: >-
+            The unique identifier assigned to a commitment discount by
+            the provider. MUST NOT be null.
+        CommitmentDiscountName:
+          type: string
+          nullable: true
+          description: >-
+            The display name assigned to a commitment discount.
+        CommitmentDiscountType:
+          type: string
+          nullable: true
+          description: >-
+            A provider-assigned label describing the type of commitment
+            discount.
+        CommitmentDiscountCategory:
+          type: string
+          enum:
+            - Spend
+            - Usage
+          description: >-
+            Whether the commitment discount is based on usage quantity
+            or cost.
+        CommitmentStartDate:
+          type: string
+          format: date-time
+          description: >-
+            The start date and time of the contract commitment.
+        CommitmentEndDate:
+          type: string
+          format: date-time
+          description: >-
+            The end date and time of the contract commitment.
+        CommitmentTotalQuantity:
+          type: number
+          nullable: true
+          description: >-
+            The total quantity of the commitment purchased.
+        CommitmentRemainingQuantity:
+          type: number
+          nullable: true
+          description: >-
+            The remaining quantity of the commitment that has not yet
+            been consumed.
+        CommitmentUnit:
+          type: string
+          nullable: true
+          description: >-
+            The unit of measurement for the commitment quantity.
+        CommitmentDescription:
+          type: string
+          nullable: true
+          description: >-
+            A human-readable description of the contract commitment.
+        BillingAccountId:
+          type: string
+          description: >-
+            The unique identifier for the billing account associated with
+            the commitment.
+        BillingAccountName:
+          type: string
+          nullable: true
+          description: >-
+            The display name for the billing account.
+        ProviderName:
+          type: string
+          description: >-
+            The name of the entity that made the commitment discount
+            available.
+      required:
+        - CommitmentDiscountId
+        - CommitmentStartDate
+        - CommitmentEndDate
+        - BillingAccountId
+        - ProviderName
+    ExportRequest:
+      type: object
+      properties:
+        billingPeriodStart:
+          type: string
+          format: date-time
+          description: The inclusive start of the billing period to export.
+        billingPeriodEnd:
+          type: string
+          format: date-time
+          description: The exclusive end of the billing period to export.
+        format:
+          type: string
+          enum:
+            - csv
+            - parquet
+            - json
+          default: csv
+          description: The output format for the exported data.
+        includeContractCommitments:
+          type: boolean
+          default: false
+          description: Whether to include contract commitment data in the export.
+      required:
+        - billingPeriodStart
+        - billingPeriodEnd
+    ExportJobResponse:
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: The unique identifier for the export job.
+        status:
+          type: string
+          enum:
+            - Pending
+            - Processing
+            - Complete
+            - Failed
+          description: The current status of the export job.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the export job was created.
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the export job completed.
+        downloadUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: >-
+            The URL to download the exported data. Only available when
+            status is Complete.
+        recordCount:
+          type: integer
+          nullable: true
+          description: The total number of records in the export.
+        error:
+          type: string
+          nullable: true
+          description: Error message if the export job failed.
+      required:
+        - jobId
+        - status
+        - createdAt
+    SchemaMetadata:
+      type: object
+      description: >-
+        Metadata about the FOCUS dataset schema, supporting communication
+        of important attributes about the data including column names, data
+        types, FOCUS version, and data generator version.
+      properties:
+        focusVersion:
+          type: string
+          description: The version of the FOCUS specification the data conforms to.
+          example: '1.3'
+        dataGeneratorName:
+          type: string
+          description: The name of the data generator producing the FOCUS data.
+        dataGeneratorVersion:
+          type: string
+          description: The version of the data generator.
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnDefinition'
+          description: List of column definitions in the FOCUS dataset.
+        datasets:
+          type: array
+          items:
+            type: string
+          description: The datasets available from this data generator.
+          example:
+            - CostAndUsage
+            - ContractCommitment
+      required:
+        - focusVersion
+        - columns
+    ColumnDefinition:
+      type: object
+      properties:
+        columnName:
+          type: string
+          description: The name of the column.
+        dataType:
+          type: string
+          enum:
+            - String
+            - Number
+            - DateTime
+            - JSON
+          description: The data type of the column.
+        requirement:
+          type: string
+          enum:
+            - Must
+            - Recommended
+            - Optional
+          description: >-
+            The requirement level of the column per the FOCUS specification.
+        nullable:
+          type: boolean
+          description: Whether the column can contain null values.
+        description:
+          type: string
+          description: A description of the column and its purpose.
+        category:
+          type: string
+          enum:
+            - Dimension
+            - Metric
+          description: Whether this column is a dimension or a metric.
+      required:
+        - columnName
+        - dataType
+        - requirement
+        - nullable
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          nullable: true
+          description: Additional details about the error.
+      required:
+        - code
+        - message
+security:
+  - bearerAuth: []
+  - apiKeyAuth: []
