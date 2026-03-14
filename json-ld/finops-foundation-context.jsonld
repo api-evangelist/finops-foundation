@@ -1,0 +1,224 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "focus": "https://focus.finops.org/focus-columns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AvailabilityZone": {
+      "@id": "focus:availabilityzone",
+      "@type": "xsd:string"
+    },
+    "BilledCost": {
+      "@id": "focus:billedcost",
+      "@type": "xsd:decimal"
+    },
+    "BillingAccountId": {
+      "@id": "focus:billingaccountid",
+      "@type": "xsd:string"
+    },
+    "BillingAccountName": {
+      "@id": "focus:billingaccountname",
+      "@type": "xsd:string"
+    },
+    "BillingCurrency": {
+      "@id": "focus:billingcurrency",
+      "@type": "xsd:string"
+    },
+    "BillingPeriodEnd": {
+      "@id": "focus:billingperiodend",
+      "@type": "xsd:dateTime"
+    },
+    "BillingPeriodStart": {
+      "@id": "focus:billingperiodstart",
+      "@type": "xsd:dateTime"
+    },
+    "CapacityReservationId": {
+      "@id": "focus:capacityreservationid",
+      "@type": "xsd:string"
+    },
+    "ChargeCategory": {
+      "@id": "focus:chargecategory",
+      "@type": "xsd:string"
+    },
+    "ChargeClass": {
+      "@id": "focus:chargeclass",
+      "@type": "xsd:string"
+    },
+    "ChargeDescription": {
+      "@id": "focus:chargedescription",
+      "@type": "xsd:string"
+    },
+    "ChargeFrequency": {
+      "@id": "focus:chargefrequency",
+      "@type": "xsd:string"
+    },
+    "ChargePeriodEnd": {
+      "@id": "focus:chargeperiodend",
+      "@type": "xsd:dateTime"
+    },
+    "ChargePeriodStart": {
+      "@id": "focus:chargeperiodstart",
+      "@type": "xsd:dateTime"
+    },
+    "CommitmentDiscountCategory": {
+      "@id": "focus:commitmentdiscountcategory",
+      "@type": "xsd:string"
+    },
+    "CommitmentDiscountId": {
+      "@id": "focus:commitmentdiscountid",
+      "@type": "xsd:string"
+    },
+    "CommitmentDiscountName": {
+      "@id": "focus:commitmentdiscountname",
+      "@type": "xsd:string"
+    },
+    "CommitmentDiscountQuantity": {
+      "@id": "focus:commitmentdiscountquantity",
+      "@type": "xsd:decimal"
+    },
+    "CommitmentDiscountStatus": {
+      "@id": "focus:commitmentdiscountstatus",
+      "@type": "xsd:string"
+    },
+    "CommitmentDiscountType": {
+      "@id": "focus:commitmentdiscounttype",
+      "@type": "xsd:string"
+    },
+    "CommitmentDiscountUnit": {
+      "@id": "focus:commitmentdiscountunit",
+      "@type": "xsd:string"
+    },
+    "CommitmentStartDate": {
+      "@id": "focus:commitmentstartdate",
+      "@type": "xsd:dateTime"
+    },
+    "CommitmentEndDate": {
+      "@id": "focus:commitmentenddate",
+      "@type": "xsd:dateTime"
+    },
+    "CommitmentTotalQuantity": {
+      "@id": "focus:commitmenttotalquantity",
+      "@type": "xsd:decimal"
+    },
+    "CommitmentRemainingQuantity": {
+      "@id": "focus:commitmentremainingquantity",
+      "@type": "xsd:decimal"
+    },
+    "CommitmentUnit": {
+      "@id": "focus:commitmentunit",
+      "@type": "xsd:string"
+    },
+    "CommitmentDescription": {
+      "@id": "focus:commitmentdescription",
+      "@type": "xsd:string"
+    },
+    "ConsumedQuantity": {
+      "@id": "focus:consumedquantity",
+      "@type": "xsd:decimal"
+    },
+    "ConsumedUnit": {
+      "@id": "focus:consumedunit",
+      "@type": "xsd:string"
+    },
+    "ContractedCost": {
+      "@id": "focus:contractedcost",
+      "@type": "xsd:decimal"
+    },
+    "ContractedUnitPrice": {
+      "@id": "focus:contractedunitprice",
+      "@type": "xsd:decimal"
+    },
+    "EffectiveCost": {
+      "@id": "focus:effectivecost",
+      "@type": "xsd:decimal"
+    },
+    "InvoiceIssuerName": {
+      "@id": "focus:invoiceissuername",
+      "@type": "xsd:string"
+    },
+    "ListCost": {
+      "@id": "focus:listcost",
+      "@type": "xsd:decimal"
+    },
+    "ListUnitPrice": {
+      "@id": "focus:listunitprice",
+      "@type": "xsd:decimal"
+    },
+    "PricingCategory": {
+      "@id": "focus:pricingcategory",
+      "@type": "xsd:string"
+    },
+    "PricingQuantity": {
+      "@id": "focus:pricingquantity",
+      "@type": "xsd:decimal"
+    },
+    "PricingUnit": {
+      "@id": "focus:pricingunit",
+      "@type": "xsd:string"
+    },
+    "ProviderName": {
+      "@id": "focus:providername",
+      "@type": "xsd:string"
+    },
+    "PublisherName": {
+      "@id": "focus:publishername",
+      "@type": "xsd:string"
+    },
+    "Region": {
+      "@id": "focus:region",
+      "@type": "xsd:string"
+    },
+    "ResourceId": {
+      "@id": "focus:resourceid",
+      "@type": "xsd:string"
+    },
+    "ResourceName": {
+      "@id": "focus:resourcename",
+      "@type": "xsd:string"
+    },
+    "ResourceType": {
+      "@id": "focus:resourcetype",
+      "@type": "xsd:string"
+    },
+    "ServiceCategory": {
+      "@id": "focus:servicecategory",
+      "@type": "xsd:string"
+    },
+    "ServiceName": {
+      "@id": "focus:servicename",
+      "@type": "xsd:string"
+    },
+    "ServiceSubcategory": {
+      "@id": "focus:servicesubcategory",
+      "@type": "xsd:string"
+    },
+    "SkuId": {
+      "@id": "focus:skuid",
+      "@type": "xsd:string"
+    },
+    "SkuPriceId": {
+      "@id": "focus:skupriceid",
+      "@type": "xsd:string"
+    },
+    "SubAccountId": {
+      "@id": "focus:subaccountid",
+      "@type": "xsd:string"
+    },
+    "SubAccountName": {
+      "@id": "focus:subaccountname",
+      "@type": "xsd:string"
+    },
+    "Tags": {
+      "@id": "focus:tags",
+      "@type": "@json"
+    },
+    "x_SplitCostAllocationMethod": {
+      "@id": "focus:x_splitcostallocationmethod",
+      "@type": "xsd:string"
+    },
+    "x_SplitCostAllocationPercentage": {
+      "@id": "focus:x_splitcostallocationpercentage",
+      "@type": "xsd:decimal"
+    }
+  }
+}

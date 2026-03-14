@@ -22,6 +22,15 @@ apis:
         type: GitHubRepository
       - url: https://focus.finops.org/focus-columns/
         type: Documentation
+      - url: >-
+          json-schema/finops-foundation-cost-and-usage-record-schema.json
+        type: JSONSchema
+      - url: >-
+          json-schema/finops-foundation-contract-commitment-record-schema.json
+        type: JSONSchema
+      - url: >-
+          json-ld/finops-foundation-context.jsonld
+        type: JSONLD
     description: >-
       An API modeled on the FinOps Open Cost and Usage Specification (FOCUS)
       v1.3, the open standard maintained by the FinOps Foundation under the
