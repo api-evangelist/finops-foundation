@@ -1,6 +1,23 @@
 aid: finops-foundation
+name: FinOps Foundation
+description: >-
+  The FinOps Foundation aims to help organizations optimize their cloud spending
+  and improve cloud financial management practices. By providing education,
+  tools, and resources, the foundation equips teams with the skills and
+  knowledge needed to effectively manage cloud costs.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2026-01-02'
+modified: '2026-03-16'
+position: Consumer
+tags:
+  - FinOps
+  - Costs
+  - Budgets
 url: >-
   https://raw.githubusercontent.com/api-evangelist/finops-foundation/refs/heads/main/apis.yml
+specificationVersion: '0.19'
 apis:
   - aid: finops-foundation:focus-cost-and-usage
     name: FOCUS Cost and Usage API
@@ -15,67 +32,28 @@ apis:
     properties:
       - url: https://focus.finops.org/focus-specification/v1-3/
         type: Documentation
-      - url: >-
-          openapi/finops-foundation-focus-cost-and-usage-openapi.yml
+      - url: openapi/finops-foundation-focus-cost-and-usage-openapi.yml
         type: OpenAPI
       - url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec
-        type: GitHubRepository
+        type: GitHub Repository
       - url: https://focus.finops.org/focus-columns/
-        type: Documentation
-      - url: >-
-          json-schema/finops-foundation-cost-and-usage-record-schema.json
+        type: Reference
+      - url: json-schema/finops-foundation-cost-and-usage-record-schema.json
         type: JSONSchema
-      - url: >-
-          json-schema/finops-foundation-contract-commitment-record-schema.json
+      - url: json-schema/finops-foundation-contract-commitment-record-schema.json
         type: JSONSchema
-      - url: >-
-          json-ld/finops-foundation-context.jsonld
+      - url: json-ld/finops-foundation-context.jsonld
         type: JSONLD
     description: >-
       An API modeled on the FinOps Open Cost and Usage Specification (FOCUS)
       v1.3, the open standard maintained by the FinOps Foundation under the
       Linux Foundation that defines a common schema for cloud, SaaS, and other
-      technology billing data. FOCUS normalizes billing datasets across
-      providers, defining standardized columns (dimensions and metrics),
-      column-specific requirements, and spec-wide attributes. The v1.3
-      specification, ratified December 2025, introduces the Contract Commitment
-      dataset, split cost allocation columns, and data completeness and recency
-      metadata. Major cloud providers including AWS, Azure, GCP, OCI, and
-      Tencent support the FOCUS format for billing data exports.
-name: FinOps Foundation
-tags:
-  - FinOps
-  - Costs
-  - Budgets
-type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-access: 3rd-Party
-created: '2026-01-02'
-modified: '2026-03-14'
-position: Consumer
-description: >-
-  The FinOps Foundation aims to help organizations optimize their cloud spending
-  and improve cloud financial management practices. By providing education,
-  tools, and resources, the foundation equips teams with the skills and
-  knowledge needed to effectively manage cloud costs. Through training programs,
-  best practices, and industry insights, FinOps Foundation helps companies
-  achieve financial transparency, accountability, and governance in their cloud
-  environments. Ultimately, the foundation's mission is to empower businesses to
-  make data-driven decisions and drive efficiencies in their cloud operations.
+      technology billing data.
+common:
+  - type: Website
+    url: https://www.finops.org/
+  - type: Community
+    url: https://www.finops.org/community/
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
-specificationVersion: '0.19'
-common:
-  - name: The FinOps Foundation
-    description: 'null'
-    url: https://www.finops.org/
-    type: Website
-  - name: FinOps Community
-    description: 'null'
-    url: https://www.finops.org/community/
-    type: Community
-  - name: About the FinOps Foundation
-    description: 'null'
-    url: https://www.finops.org/about/
-    type: About
+    email: kin@apievangelist.com
