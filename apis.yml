@@ -12,9 +12,9 @@ created: '2026-01-02'
 modified: '2026-03-16'
 position: Consumer
 tags:
-  - FinOps
-  - Costs
   - Budgets
+  - Costs
+  - FinOps
 url: >-
   https://raw.githubusercontent.com/api-evangelist/finops-foundation/refs/heads/main/apis.yml
 specificationVersion: '0.19'
@@ -22,11 +22,11 @@ apis:
   - aid: finops-foundation:focus-cost-and-usage
     name: FOCUS Cost and Usage API
     tags:
-      - FinOps
-      - Costs
-      - Budgets
       - Billing
+      - Budgets
       - Cloud
+      - Costs
+      - FinOps
       - FOCUS
     humanURL: https://focus.finops.org/
     properties:

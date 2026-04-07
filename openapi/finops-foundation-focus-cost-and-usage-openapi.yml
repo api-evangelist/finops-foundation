@@ -24,15 +24,15 @@ servers:
   - url: https://api.example.com/focus/v1
     description: Example FOCUS-compliant API server
 tags:
-  - name: Cost and Usage
-    description: >-
-      Endpoints for querying FOCUS-compliant cost and usage data, the primary
-      dataset defined by the FOCUS specification.
   - name: Contract Commitments
     description: >-
       Endpoints for querying contract commitment data, a supplemental dataset
       introduced in FOCUS v1.3 that isolates contract terms from cost and usage
       rows.
+  - name: Cost and Usage
+    description: >-
+      Endpoints for querying FOCUS-compliant cost and usage data, the primary
+      dataset defined by the FOCUS specification.
   - name: Schema Metadata
     description: >-
       Endpoints for retrieving metadata about the FOCUS dataset schema, including
