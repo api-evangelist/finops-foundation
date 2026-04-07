@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: FOCUS Cost and Usage API
+  title: FinOps Foundation FOCUS Cost and Usage API
   description: >-
     An API modeled on the FinOps Open Cost and Usage Specification (FOCUS) v1.3,
     which defines a standard schema for cloud, SaaS, and other technology billing
@@ -41,7 +41,7 @@ paths:
   /cost-and-usage:
     get:
       operationId: listCostAndUsage
-      summary: List cost and usage records
+      summary: FinOps Foundation List cost and usage records
       description: >-
         Retrieves FOCUS-compliant cost and usage records. The response conforms
         to the FOCUS Cost and Usage dataset schema, providing normalized billing
@@ -168,7 +168,7 @@ paths:
   /cost-and-usage/export:
     post:
       operationId: exportCostAndUsage
-      summary: Export cost and usage data
+      summary: FinOps Foundation Export cost and usage data
       description: >-
         Initiates an export of FOCUS-compliant cost and usage data for a
         specified billing period. Returns a job identifier that can be used
@@ -203,7 +203,7 @@ paths:
   /cost-and-usage/export/{jobId}:
     get:
       operationId: getCostAndUsageExportStatus
-      summary: Get cost and usage export job status
+      summary: FinOps Foundation Get cost and usage export job status
       description: >-
         Retrieves the status of a previously initiated cost and usage data
         export job.
@@ -232,7 +232,7 @@ paths:
   /contract-commitments:
     get:
       operationId: listContractCommitments
-      summary: List contract commitment records
+      summary: FinOps Foundation List contract commitment records
       description: >-
         Retrieves contract commitment records as defined in the FOCUS v1.3
         supplemental dataset. Contract commitments isolate contract terms
@@ -290,7 +290,7 @@ paths:
   /schema:
     get:
       operationId: getSchemaMetadata
-      summary: Get FOCUS schema metadata
+      summary: FinOps Foundation Get FOCUS schema metadata
       description: >-
         Retrieves metadata about the FOCUS dataset schema, including column
         definitions, data types, FOCUS version, and data generator version
