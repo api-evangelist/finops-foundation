@@ -35,7 +35,7 @@ apis:
       - url: openapi/finops-foundation-focus-cost-and-usage-openapi.yml
         type: OpenAPI
       - url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec
-        type: GitHub Repository
+        type: GitHubRepository
       - url: https://focus.finops.org/focus-columns/
         type: Reference
       - url: json-schema/finops-foundation-cost-and-usage-record-schema.json
