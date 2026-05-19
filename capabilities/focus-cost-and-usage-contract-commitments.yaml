@@ -1,0 +1,98 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FinOps Foundation FOCUS Cost and Usage API — Contract Commitments
+  description: 'FinOps Foundation FOCUS Cost and Usage API — Contract Commitments. 1 operations. Lead operation: FinOps Foundation
+    List contract commitment records. Self-contained Naftiko capability covering one Finops Foundation business surface.'
+  tags:
+  - Finops Foundation
+  - Contract Commitments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FINOPS_FOUNDATION_API_KEY: FINOPS_FOUNDATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: focus-cost-and-usage-contract-commitments
+    baseUri: https://api.example.com/focus/v1
+    description: FinOps Foundation FOCUS Cost and Usage API — Contract Commitments business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: contract-commitments
+      path: /contract-commitments
+      operations:
+      - name: listcontractcommitments
+        method: GET
+        description: FinOps Foundation List contract commitment records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: commitmentDiscountId
+          in: query
+          type: string
+          description: Filter by the identifier assigned to a commitment discount by the provider.
+        - name: billingAccountId
+          in: query
+          type: string
+          description: Filter by the unique identifier for a billing account.
+        - name: pageSize
+          in: query
+          type: integer
+          description: Number of records to return per page.
+        - name: pageToken
+          in: query
+          type: string
+          description: Token for retrieving the next page of results.
+    authentication:
+      type: bearer
+      token: '{{env.FINOPS_FOUNDATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: focus-cost-and-usage-contract-commitments-rest
+    port: 8080
+    description: REST adapter for FinOps Foundation FOCUS Cost and Usage API — Contract Commitments. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/contract-commitments
+      name: contract-commitments
+      description: REST surface for contract-commitments.
+      operations:
+      - method: GET
+        name: listcontractcommitments
+        description: FinOps Foundation List contract commitment records
+        call: focus-cost-and-usage-contract-commitments.listcontractcommitments
+        with:
+          commitmentDiscountId: rest.commitmentDiscountId
+          billingAccountId: rest.billingAccountId
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: focus-cost-and-usage-contract-commitments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FinOps Foundation FOCUS Cost and Usage API — Contract Commitments. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: finops-foundation-list-contract-commitment
+      description: FinOps Foundation List contract commitment records
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: focus-cost-and-usage-contract-commitments.listcontractcommitments
+      with:
+        commitmentDiscountId: tools.commitmentDiscountId
+        billingAccountId: tools.billingAccountId
+        pageSize: tools.pageSize
+        pageToken: tools.pageToken
+      outputParameters:
+      - type: object
+        mapping: $.

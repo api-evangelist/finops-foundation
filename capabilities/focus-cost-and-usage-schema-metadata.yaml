@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FinOps Foundation FOCUS Cost and Usage API — Schema Metadata
+  description: 'FinOps Foundation FOCUS Cost and Usage API — Schema Metadata. 1 operations. Lead operation: FinOps Foundation
+    Get FOCUS schema metadata. Self-contained Naftiko capability covering one Finops Foundation business surface.'
+  tags:
+  - Finops Foundation
+  - Schema Metadata
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FINOPS_FOUNDATION_API_KEY: FINOPS_FOUNDATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: focus-cost-and-usage-schema-metadata
+    baseUri: https://api.example.com/focus/v1
+    description: FinOps Foundation FOCUS Cost and Usage API — Schema Metadata business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: schema
+      path: /schema
+      operations:
+      - name: getschemametadata
+        method: GET
+        description: FinOps Foundation Get FOCUS schema metadata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FINOPS_FOUNDATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: focus-cost-and-usage-schema-metadata-rest
+    port: 8080
+    description: REST adapter for FinOps Foundation FOCUS Cost and Usage API — Schema Metadata. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/schema
+      name: schema
+      description: REST surface for schema.
+      operations:
+      - method: GET
+        name: getschemametadata
+        description: FinOps Foundation Get FOCUS schema metadata
+        call: focus-cost-and-usage-schema-metadata.getschemametadata
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: focus-cost-and-usage-schema-metadata-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FinOps Foundation FOCUS Cost and Usage API — Schema Metadata. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: finops-foundation-get-focus-schema
+      description: FinOps Foundation Get FOCUS schema metadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: focus-cost-and-usage-schema-metadata.getschemametadata
+      outputParameters:
+      - type: object
+        mapping: $.

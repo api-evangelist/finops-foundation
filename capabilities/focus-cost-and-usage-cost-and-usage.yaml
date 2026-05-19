@@ -1,0 +1,230 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FinOps Foundation FOCUS Cost and Usage API — Cost and Usage
+  description: 'FinOps Foundation FOCUS Cost and Usage API — Cost and Usage. 3 operations. Lead operation: FinOps Foundation
+    List cost and usage records. Self-contained Naftiko capability covering one Finops Foundation business surface.'
+  tags:
+  - Finops Foundation
+  - Cost and Usage
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FINOPS_FOUNDATION_API_KEY: FINOPS_FOUNDATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: focus-cost-and-usage-cost-and-usage
+    baseUri: https://api.example.com/focus/v1
+    description: FinOps Foundation FOCUS Cost and Usage API — Cost and Usage business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: cost-and-usage
+      path: /cost-and-usage
+      operations:
+      - name: listcostandusage
+        method: GET
+        description: FinOps Foundation List cost and usage records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: billingPeriodStart
+          in: query
+          type: string
+          description: Filter by billing period start date (inclusive). Format is date-time per RFC 3339.
+        - name: billingPeriodEnd
+          in: query
+          type: string
+          description: Filter by billing period end date (exclusive). Format is date-time per RFC 3339.
+        - name: chargeCategory
+          in: query
+          type: string
+          description: Filter by charge category (e.g., Usage, Purchase, Tax, Credit, Adjustment).
+        - name: providerName
+          in: query
+          type: string
+          description: Filter by the name of the entity that made the resource or service available.
+        - name: serviceName
+          in: query
+          type: string
+          description: Filter by the display name of the service that was purchased.
+        - name: serviceCategory
+          in: query
+          type: string
+          description: Filter by the highest-level classification of a service (e.g., Compute, Storage, Networking, Database).
+        - name: region
+          in: query
+          type: string
+          description: Filter by the isolated geographic area where a resource is provisioned or a service is provided.
+        - name: resourceId
+          in: query
+          type: string
+          description: Filter by unique identifier assigned to a resource by the provider.
+        - name: subAccountId
+          in: query
+          type: string
+          description: Filter by the identifier for a sub account.
+        - name: billingCurrency
+          in: query
+          type: string
+          description: Filter by the currency that a charge was billed in.
+        - name: pageSize
+          in: query
+          type: integer
+          description: Number of records to return per page.
+        - name: pageToken
+          in: query
+          type: string
+          description: Token for retrieving the next page of results.
+    - name: cost-and-usage-export
+      path: /cost-and-usage/export
+      operations:
+      - name: exportcostandusage
+        method: POST
+        description: FinOps Foundation Export cost and usage data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cost-and-usage-export-jobId
+      path: /cost-and-usage/export/{jobId}
+      operations:
+      - name: getcostandusageexportstatus
+        method: GET
+        description: FinOps Foundation Get cost and usage export job status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          description: The unique identifier for the export job.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FINOPS_FOUNDATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: focus-cost-and-usage-cost-and-usage-rest
+    port: 8080
+    description: REST adapter for FinOps Foundation FOCUS Cost and Usage API — Cost and Usage. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/cost-and-usage
+      name: cost-and-usage
+      description: REST surface for cost-and-usage.
+      operations:
+      - method: GET
+        name: listcostandusage
+        description: FinOps Foundation List cost and usage records
+        call: focus-cost-and-usage-cost-and-usage.listcostandusage
+        with:
+          billingPeriodStart: rest.billingPeriodStart
+          billingPeriodEnd: rest.billingPeriodEnd
+          chargeCategory: rest.chargeCategory
+          providerName: rest.providerName
+          serviceName: rest.serviceName
+          serviceCategory: rest.serviceCategory
+          region: rest.region
+          resourceId: rest.resourceId
+          subAccountId: rest.subAccountId
+          billingCurrency: rest.billingCurrency
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cost-and-usage/export
+      name: cost-and-usage-export
+      description: REST surface for cost-and-usage-export.
+      operations:
+      - method: POST
+        name: exportcostandusage
+        description: FinOps Foundation Export cost and usage data
+        call: focus-cost-and-usage-cost-and-usage.exportcostandusage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cost-and-usage/export/{jobid}
+      name: cost-and-usage-export-jobid
+      description: REST surface for cost-and-usage-export-jobId.
+      operations:
+      - method: GET
+        name: getcostandusageexportstatus
+        description: FinOps Foundation Get cost and usage export job status
+        call: focus-cost-and-usage-cost-and-usage.getcostandusageexportstatus
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: focus-cost-and-usage-cost-and-usage-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FinOps Foundation FOCUS Cost and Usage API — Cost and Usage. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: finops-foundation-list-cost-and
+      description: FinOps Foundation List cost and usage records
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: focus-cost-and-usage-cost-and-usage.listcostandusage
+      with:
+        billingPeriodStart: tools.billingPeriodStart
+        billingPeriodEnd: tools.billingPeriodEnd
+        chargeCategory: tools.chargeCategory
+        providerName: tools.providerName
+        serviceName: tools.serviceName
+        serviceCategory: tools.serviceCategory
+        region: tools.region
+        resourceId: tools.resourceId
+        subAccountId: tools.subAccountId
+        billingCurrency: tools.billingCurrency
+        pageSize: tools.pageSize
+        pageToken: tools.pageToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finops-foundation-export-cost-and
+      description: FinOps Foundation Export cost and usage data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: focus-cost-and-usage-cost-and-usage.exportcostandusage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finops-foundation-get-cost-and
+      description: FinOps Foundation Get cost and usage export job status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: focus-cost-and-usage-cost-and-usage.getcostandusageexportstatus
+      with:
+        jobId: tools.jobId
+      outputParameters:
+      - type: object
+        mapping: $.
