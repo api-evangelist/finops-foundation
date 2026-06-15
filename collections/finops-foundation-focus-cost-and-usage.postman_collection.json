@@ -1,0 +1,1256 @@
+{
+  "item": [
+    {
+      "id": "adfc5e6a-b17b-48f5-9d90-0efdeafff5f7",
+      "name": "Contract Commitments",
+      "description": {
+        "content": "Endpoints for querying contract commitment data, a supplemental dataset introduced in FOCUS v1.3 that isolates contract terms from cost and usage rows.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fffe9031-7183-4d19-98d7-cfaa9c4a7972",
+          "name": "FinOps Foundation List contract commitment records",
+          "request": {
+            "name": "FinOps Foundation List contract commitment records",
+            "description": {
+              "content": "Retrieves contract commitment records as defined in the FOCUS v1.3 supplemental dataset. Contract commitments isolate contract terms such as start and end dates, remaining units, and descriptions from cost and usage rows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contract-commitments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commitmentDiscountId",
+                  "value": "<string>",
+                  "description": "Filter by the identifier assigned to a commitment discount by the provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "billingAccountId",
+                  "value": "<string>",
+                  "description": "Filter by the unique identifier for a billing account."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "1000",
+                  "description": "Number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Token for retrieving the next page of results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bebc696-9184-4d93-bfe0-5affc37e1ffd",
+              "name": "A paginated list of contract commitment records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contract-commitments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "commitmentDiscountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"CommitmentDiscountId\": \"string\",\n      \"CommitmentStartDate\": \"2009-01-01T13:56:13.139Z\",\n      \"CommitmentEndDate\": \"2024-03-11T06:18:23.961Z\",\n      \"BillingAccountId\": \"string\",\n      \"ProviderName\": \"string\",\n      \"CommitmentDiscountName\": \"string\",\n      \"CommitmentDiscountType\": \"string\",\n      \"CommitmentDiscountCategory\": \"Usage\",\n      \"CommitmentTotalQuantity\": 4461.274338005995,\n      \"CommitmentRemainingQuantity\": 710.835484839748,\n      \"CommitmentUnit\": \"string\",\n      \"CommitmentDescription\": \"string\",\n      \"BillingAccountName\": \"string\"\n    },\n    {\n      \"CommitmentDiscountId\": \"string\",\n      \"CommitmentStartDate\": \"1992-09-24T23:32:36.812Z\",\n      \"CommitmentEndDate\": \"2003-02-21T19:09:07.833Z\",\n      \"BillingAccountId\": \"string\",\n      \"ProviderName\": \"string\",\n      \"CommitmentDiscountName\": \"string\",\n      \"CommitmentDiscountType\": \"string\",\n      \"CommitmentDiscountCategory\": \"Spend\",\n      \"CommitmentTotalQuantity\": 6835.178243170092,\n      \"CommitmentRemainingQuantity\": 8242.698179491761,\n      \"CommitmentUnit\": \"string\",\n      \"CommitmentDescription\": \"string\",\n      \"BillingAccountName\": \"string\"\n    }\n  ],\n  \"nextPageToken\": \"string\",\n  \"totalRecords\": 7017\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1c423be-72bb-47f8-8793-4e915ee34f77",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contract-commitments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "commitmentDiscountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9b844e0-4d90-4a9f-afb1-81bb6703fac3",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contract-commitments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "commitmentDiscountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "65967259-6433-4d10-8cc2-0859828310ce",
+      "name": "Cost and Usage",
+      "description": {
+        "content": "Endpoints for querying FOCUS-compliant cost and usage data, the primary dataset defined by the FOCUS specification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "320f0277-15a2-4530-89d0-fdec2c80b7f0",
+          "name": "FinOps Foundation List cost and usage records",
+          "request": {
+            "name": "FinOps Foundation List cost and usage records",
+            "description": {
+              "content": "Retrieves FOCUS-compliant cost and usage records. The response conforms to the FOCUS Cost and Usage dataset schema, providing normalized billing data with standardized columns for dimensions and metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cost-and-usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "billingPeriodStart",
+                  "value": "<dateTime>",
+                  "description": "Filter by billing period start date (inclusive). Format is date-time per RFC 3339."
+                },
+                {
+                  "disabled": false,
+                  "key": "billingPeriodEnd",
+                  "value": "<dateTime>",
+                  "description": "Filter by billing period end date (exclusive). Format is date-time per RFC 3339."
+                },
+                {
+                  "disabled": false,
+                  "key": "chargeCategory",
+                  "value": "<string>",
+                  "description": "Filter by charge category (e.g., Usage, Purchase, Tax, Credit, Adjustment)."
+                },
+                {
+                  "disabled": false,
+                  "key": "providerName",
+                  "value": "<string>",
+                  "description": "Filter by the name of the entity that made the resource or service available."
+                },
+                {
+                  "disabled": false,
+                  "key": "serviceName",
+                  "value": "<string>",
+                  "description": "Filter by the display name of the service that was purchased."
+                },
+                {
+                  "disabled": false,
+                  "key": "serviceCategory",
+                  "value": "<string>",
+                  "description": "Filter by the highest-level classification of a service (e.g., Compute, Storage, Networking, Database)."
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Filter by the isolated geographic area where a resource is provisioned or a service is provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "resourceId",
+                  "value": "<string>",
+                  "description": "Filter by unique identifier assigned to a resource by the provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "subAccountId",
+                  "value": "<string>",
+                  "description": "Filter by the identifier for a sub account."
+                },
+                {
+                  "disabled": false,
+                  "key": "billingCurrency",
+                  "value": "<string>",
+                  "description": "Filter by the currency that a charge was billed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "1000",
+                  "description": "Number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Token for retrieving the next page of results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67f1762b-c1fc-4d44-bb76-9b88f16e30f7",
+              "name": "A paginated list of FOCUS cost and usage records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billingPeriodStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "billingPeriodEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "chargeCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "providerName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingCurrency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"BilledCost\": 4417.389265547038,\n      \"BillingAccountId\": \"string\",\n      \"BillingCurrency\": \"string\",\n      \"BillingPeriodEnd\": \"2005-12-18T03:02:04.462Z\",\n      \"BillingPeriodStart\": \"1974-05-25T17:45:58.231Z\",\n      \"ChargeCategory\": \"Adjustment\",\n      \"ChargeFrequency\": \"Recurring\",\n      \"ChargePeriodEnd\": \"2015-10-23T16:05:06.939Z\",\n      \"ChargePeriodStart\": \"1979-04-09T14:09:53.402Z\",\n      \"ContractedCost\": 7615.38096340283,\n      \"EffectiveCost\": 246.67700058677354,\n      \"InvoiceIssuerName\": \"string\",\n      \"ListCost\": 7424.032061606665,\n      \"ProviderName\": \"string\",\n      \"ServiceCategory\": \"string\",\n      \"ServiceName\": \"string\",\n      \"AvailabilityZone\": \"string\",\n      \"BillingAccountName\": \"string\",\n      \"CapacityReservationId\": \"string\",\n      \"ChargeClass\": \"Correction\",\n      \"ChargeDescription\": \"string\",\n      \"CommitmentDiscountCategory\": \"Usage\",\n      \"CommitmentDiscountId\": \"string\",\n      \"CommitmentDiscountName\": \"string\",\n      \"CommitmentDiscountQuantity\": 2642.0198875639576,\n      \"CommitmentDiscountStatus\": \"Unused\",\n      \"CommitmentDiscountType\": \"string\",\n      \"CommitmentDiscountUnit\": \"string\",\n      \"ConsumedQuantity\": 5462.128806359618,\n      \"ConsumedUnit\": \"string\",\n      \"ContractedUnitPrice\": 9982.042692178702,\n      \"ListUnitPrice\": 2816.0781057838535,\n      \"PricingCategory\": \"Other\",\n      \"PricingQuantity\": 7628.642507599542,\n      \"PricingUnit\": \"string\",\n      \"PublisherName\": \"string\",\n      \"Region\": \"string\",\n      \"ResourceId\": \"string\",\n      \"ResourceName\": \"string\",\n      \"ResourceType\": \"string\",\n      \"ServiceSubcategory\": \"string\",\n      \"SkuId\": \"string\",\n      \"SkuPriceId\": \"string\",\n      \"SubAccountId\": \"string\",\n      \"SubAccountName\": \"string\",\n      \"Tags\": {\n        \"key_0\": \"string\"\n      },\n      \"x_SplitCostAllocationMethod\": \"string\",\n      \"x_SplitCostAllocationPercentage\": 5039.907304956362\n    },\n    {\n      \"BilledCost\": 541.3355689529609,\n      \"BillingAccountId\": \"string\",\n      \"BillingCurrency\": \"string\",\n      \"BillingPeriodEnd\": \"1964-12-07T21:55:40.305Z\",\n      \"BillingPeriodStart\": \"1985-12-12T20:38:15.033Z\",\n      \"ChargeCategory\": \"Usage\",\n      \"ChargeFrequency\": \"Recurring\",\n      \"ChargePeriodEnd\": \"1987-11-19T21:09:09.648Z\",\n      \"ChargePeriodStart\": \"2022-12-17T10:48:38.627Z\",\n      \"ContractedCost\": 4656.288191508097,\n      \"EffectiveCost\": 4388.000241748421,\n      \"InvoiceIssuerName\": \"string\",\n      \"ListCost\": 9299.116191142934,\n      \"ProviderName\": \"string\",\n      \"ServiceCategory\": \"string\",\n      \"ServiceName\": \"string\",\n      \"AvailabilityZone\": \"string\",\n      \"BillingAccountName\": \"string\",\n      \"CapacityReservationId\": \"string\",\n      \"ChargeClass\": \"Correction\",\n      \"ChargeDescription\": \"string\",\n      \"CommitmentDiscountCategory\": \"Spend\",\n      \"CommitmentDiscountId\": \"string\",\n      \"CommitmentDiscountName\": \"string\",\n      \"CommitmentDiscountQuantity\": 1495.418732124739,\n      \"CommitmentDiscountStatus\": \"Used\",\n      \"CommitmentDiscountType\": \"string\",\n      \"CommitmentDiscountUnit\": \"string\",\n      \"ConsumedQuantity\": 1505.5436676518086,\n      \"ConsumedUnit\": \"string\",\n      \"ContractedUnitPrice\": 1631.0383399321427,\n      \"ListUnitPrice\": 8364.651348838048,\n      \"PricingCategory\": \"Other\",\n      \"PricingQuantity\": 5949.977409802665,\n      \"PricingUnit\": \"string\",\n      \"PublisherName\": \"string\",\n      \"Region\": \"string\",\n      \"ResourceId\": \"string\",\n      \"ResourceName\": \"string\",\n      \"ResourceType\": \"string\",\n      \"ServiceSubcategory\": \"string\",\n      \"SkuId\": \"string\",\n      \"SkuPriceId\": \"string\",\n      \"SubAccountId\": \"string\",\n      \"SubAccountName\": \"string\",\n      \"Tags\": {\n        \"key_0\": \"string\"\n      },\n      \"x_SplitCostAllocationMethod\": \"string\",\n      \"x_SplitCostAllocationPercentage\": 369.70830515259735\n    }\n  ],\n  \"nextPageToken\": \"string\",\n  \"totalRecords\": 4490,\n  \"dataLastUpdated\": \"1974-06-04T14:02:56.614Z\",\n  \"dataCompleteness\": \"Complete\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "578ef482-6be8-45d3-91f0-223566f8f3b2",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billingPeriodStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "billingPeriodEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "chargeCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "providerName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingCurrency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4bb92a6-881f-424f-902a-f04f9fc4120c",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billingPeriodStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "billingPeriodEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "chargeCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "providerName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingCurrency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51feb4f3-e788-4b35-b1c1-2beec735da61",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billingPeriodStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "billingPeriodEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "chargeCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "providerName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceCategory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingCurrency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd13350a-7288-49db-8d8f-8822eed3e57c",
+          "name": "FinOps Foundation Export cost and usage data",
+          "request": {
+            "name": "FinOps Foundation Export cost and usage data",
+            "description": {
+              "content": "Initiates an export of FOCUS-compliant cost and usage data for a specified billing period. Returns a job identifier that can be used to check the status and retrieve the exported data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cost-and-usage",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"billingPeriodStart\": \"<dateTime>\",\n  \"billingPeriodEnd\": \"<dateTime>\",\n  \"format\": \"csv\",\n  \"includeContractCommitments\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6ab0f09-511b-440a-8422-fe134725581c",
+              "name": "Export job accepted and processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingPeriodStart\": \"<dateTime>\",\n  \"billingPeriodEnd\": \"<dateTime>\",\n  \"format\": \"csv\",\n  \"includeContractCommitments\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"Pending\",\n  \"createdAt\": \"1997-10-04T19:33:33.892Z\",\n  \"completedAt\": \"2007-09-20T20:39:49.209Z\",\n  \"downloadUrl\": \"https://YCCtHrwzYsTpzsnoNwcNzwJKK.xqRH9j-q6-\",\n  \"recordCount\": 648,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11deb637-49c1-4ce5-b493-fae8e6845907",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingPeriodStart\": \"<dateTime>\",\n  \"billingPeriodEnd\": \"<dateTime>\",\n  \"format\": \"csv\",\n  \"includeContractCommitments\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50bc3a05-2cd0-4769-95da-7ef7d0321286",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingPeriodStart\": \"<dateTime>\",\n  \"billingPeriodEnd\": \"<dateTime>\",\n  \"format\": \"csv\",\n  \"includeContractCommitments\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3149d389-227c-458a-8f6f-2d41eb80339c",
+          "name": "FinOps Foundation Get cost and usage export job status",
+          "request": {
+            "name": "FinOps Foundation Get cost and usage export job status",
+            "description": {
+              "content": "Retrieves the status of a previously initiated cost and usage data export job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cost-and-usage",
+                "export",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The unique identifier for the export job."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b6db85f-c870-4d07-80f9-2d6e041800e2",
+              "name": "Export job status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage",
+                    "export",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The unique identifier for the export job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"Pending\",\n  \"createdAt\": \"1997-10-04T19:33:33.892Z\",\n  \"completedAt\": \"2007-09-20T20:39:49.209Z\",\n  \"downloadUrl\": \"https://YCCtHrwzYsTpzsnoNwcNzwJKK.xqRH9j-q6-\",\n  \"recordCount\": 648,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a877a8a-aecf-4e58-8458-2e39943ec9be",
+              "name": "Export job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost-and-usage",
+                    "export",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The unique identifier for the export job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4868fdcb-7582-49a5-9d46-acc773536c7a",
+      "name": "Schema Metadata",
+      "description": {
+        "content": "Endpoints for retrieving metadata about the FOCUS dataset schema, including column definitions, data types, and version information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6cbb8b87-dfdc-4f8d-a5a1-81538b5adf52",
+          "name": "FinOps Foundation Get FOCUS schema metadata",
+          "request": {
+            "name": "FinOps Foundation Get FOCUS schema metadata",
+            "description": {
+              "content": "Retrieves metadata about the FOCUS dataset schema, including column definitions, data types, FOCUS version, and data generator version information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f5fd5d5-c40b-49d0-a851-68d8f543e732",
+              "name": "FOCUS schema metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"focusVersion\": \"1.3\",\n  \"columns\": [\n    {\n      \"columnName\": \"string\",\n      \"dataType\": \"String\",\n      \"requirement\": \"Recommended\",\n      \"nullable\": false,\n      \"description\": \"string\",\n      \"category\": \"Metric\"\n    },\n    {\n      \"columnName\": \"string\",\n      \"dataType\": \"Number\",\n      \"requirement\": \"Recommended\",\n      \"nullable\": true,\n      \"description\": \"string\",\n      \"category\": \"Dimension\"\n    }\n  ],\n  \"dataGeneratorName\": \"string\",\n  \"dataGeneratorVersion\": \"string\",\n  \"datasets\": [\n    \"CostAndUsage\",\n    \"ContractCommitment\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fec8540-96d6-4059-8da1-fd9e362be5e2",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.example.com/focus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "85359002-80ec-4d25-b94e-6a3e6b3b0774",
+    "name": "FinOps Foundation FOCUS Cost and Usage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An API modeled on the FinOps Open Cost and Usage Specification (FOCUS) v1.3, which defines a standard schema for cloud, SaaS, and other technology billing data. FOCUS normalizes billing datasets across providers to reduce complexity for FinOps practitioners. This specification models the Cost and Usage dataset and the Contract Commitment dataset defined by the FOCUS standard, enabling programmatic access to FOCUS-compliant billing data. The FOCUS specification is maintained by the FinOps Foundation under the Linux Foundation.\n\nContact Support:\n Name: FinOps Foundation",
+      "type": "text/plain"
+    }
+  }
+}
