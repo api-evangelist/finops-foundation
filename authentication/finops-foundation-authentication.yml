@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/finops-foundation-focus-cost-and-usage-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token authentication for FOCUS API access.
+  sources:
+  - openapi/finops-foundation-focus-cost-and-usage-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: API key authentication for FOCUS API access.
+  sources:
+  - openapi/finops-foundation-focus-cost-and-usage-openapi.yml

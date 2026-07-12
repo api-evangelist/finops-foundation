@@ -47,12 +47,18 @@ apis:
       FinOps Foundation under the Linux Foundation that defines a common schema for cloud, SaaS, and other technology
       billing data.
 common:
+  - type: DomainSecurity
+    url: security/finops-foundation-domain-security.yml
+  - type: Authentication
+    url: authentication/finops-foundation-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/finops-foundation
   - type: Website
     url: https://www.finops.org/
   - type: Community
     url: https://www.finops.org/community/
+  - url: https://www.finops.org/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
