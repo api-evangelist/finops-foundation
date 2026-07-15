@@ -47,6 +47,8 @@ apis:
       FinOps Foundation under the Linux Foundation that defines a common schema for cloud, SaaS, and other technology
       billing data.
 common:
+  - type: AgenticAccess
+    url: agentic-access/finops-foundation-agentic-access.yml
   - type: DomainSecurity
     url: security/finops-foundation-domain-security.yml
   - type: Authentication
