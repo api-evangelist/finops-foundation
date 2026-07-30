@@ -5,7 +5,20 @@ description: >-
   practices. By providing education, tools, and resources, the foundation equips teams with the skills and knowledge
   needed to effectively manage cloud costs.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/finops-foundation.png
 access: 3rd-Party
 created: '2026-01-02'
 modified: '2026-05-19'
@@ -17,35 +30,75 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/finops-foundation/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: finops-foundation:focus-cost-and-usage
-    name: FOCUS Cost and Usage API
-    tags:
-      - Billing
-      - Budgets
-      - Cloud
-      - Costs
-      - FinOps
-      - FOCUS
-    humanURL: https://focus.finops.org/
-    properties:
-      - url: https://focus.finops.org/focus-specification/v1-3/
-        type: Documentation
-      - url: openapi/finops-foundation-focus-cost-and-usage-openapi.yml
-        type: OpenAPI
-      - url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec
-        type: GitHubRepository
-      - url: https://focus.finops.org/focus-columns/
-        type: Reference
-      - url: json-schema/finops-foundation-cost-and-usage-record-schema.json
-        type: JSONSchema
-      - url: json-schema/finops-foundation-contract-commitment-record-schema.json
-        type: JSONSchema
-      - url: json-ld/finops-foundation-context.jsonld
-        type: JSONLD
-    description: >-
-      An API modeled on the FinOps Open Cost and Usage Specification (FOCUS) v1.3, the open standard maintained by the
-      FinOps Foundation under the Linux Foundation that defines a common schema for cloud, SaaS, and other technology
-      billing data.
+- aid: finops-foundation:finops-foundation-contract-commitments-api
+  name: FinOps Foundation Contract Commitments API
+  description: >-
+    Endpoints for querying contract commitment data, a supplemental dataset introduced in FOCUS v1.3 that
+    isolates contract terms from cost and usage rows.
+  humanURL: https://focus.finops.org/
+  tags:
+  - Contract Commitments
+  properties:
+  - type: OpenAPI
+    url: openapi/finops-foundation-contract-commitments-api-openapi.yml
+  - type: Documentation
+    url: https://focus.finops.org/focus-specification/v1-3/
+  - type: GitHubRepository
+    url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec
+  - type: Reference
+    url: https://focus.finops.org/focus-columns/
+  - type: JSONSchema
+    url: json-schema/finops-foundation-cost-and-usage-record-schema.json
+  - type: JSONSchema
+    url: json-schema/finops-foundation-contract-commitment-record-schema.json
+  - type: JSONLD
+    url: json-ld/finops-foundation-context.jsonld
+- aid: finops-foundation:finops-foundation-cost-and-usage-api
+  name: FinOps Foundation Cost and Usage API
+  description: >-
+    Endpoints for querying FOCUS-compliant cost and usage data, the primary dataset defined by the FOCUS
+    specification.
+  humanURL: https://focus.finops.org/
+  tags:
+  - Cost and Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/finops-foundation-cost-and-usage-api-openapi.yml
+  - type: Documentation
+    url: https://focus.finops.org/focus-specification/v1-3/
+  - type: GitHubRepository
+    url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec
+  - type: Reference
+    url: https://focus.finops.org/focus-columns/
+  - type: JSONSchema
+    url: json-schema/finops-foundation-cost-and-usage-record-schema.json
+  - type: JSONSchema
+    url: json-schema/finops-foundation-contract-commitment-record-schema.json
+  - type: JSONLD
+    url: json-ld/finops-foundation-context.jsonld
+- aid: finops-foundation:finops-foundation-schema-metadata-api
+  name: FinOps Foundation Schema Metadata API
+  description: >-
+    Endpoints for retrieving metadata about the FOCUS dataset schema, including column definitions, data
+    types, and version information.
+  humanURL: https://focus.finops.org/
+  tags:
+  - Schema Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/finops-foundation-schema-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://focus.finops.org/focus-specification/v1-3/
+  - type: GitHubRepository
+    url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec
+  - type: Reference
+    url: https://focus.finops.org/focus-columns/
+  - type: JSONSchema
+    url: json-schema/finops-foundation-cost-and-usage-record-schema.json
+  - type: JSONSchema
+    url: json-schema/finops-foundation-contract-commitment-record-schema.json
+  - type: JSONLD
+    url: json-ld/finops-foundation-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/finops-foundation-agentic-access.yml
