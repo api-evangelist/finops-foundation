@@ -1,0 +1,18 @@
+{
+  "provider": "finops-foundation",
+  "sources": [
+    "finops-foundation-contract-commitments-api-openapi.yml",
+    "finops-foundation-cost-and-usage-api-openapi.yml",
+    "finops-foundation-schema-metadata-api-openapi.yml"
+  ],
+  "outputs": [
+    "finops-foundation-contract-commitments-api-openapi.yml",
+    "finops-foundation-cost-and-usage-api-openapi.yml",
+    "finops-foundation-schema-metadata-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
