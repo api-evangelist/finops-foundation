@@ -100,6 +100,12 @@ apis:
   - type: JSONLD
     url: json-ld/finops-foundation-context.jsonld
 common:
+  - type: IssueTracker
+    url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/issues
+  - type: Releases
+    url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/releases
+  - type: ContributionGuide
+    url: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/working_draft/CONTRIBUTING.md
   - type: AgenticAccess
     url: agentic-access/finops-foundation-agentic-access.yml
   - type: DomainSecurity
