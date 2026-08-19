@@ -28,7 +28,7 @@ tags:
   - Costs
   - FinOps
 url: https://raw.githubusercontent.com/api-evangelist/finops-foundation/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: finops-foundation:finops-foundation-contract-commitments-api
   name: FinOps Foundation Contract Commitments API
