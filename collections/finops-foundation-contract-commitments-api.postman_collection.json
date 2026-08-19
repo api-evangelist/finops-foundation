@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "9ae30162-f05d-4b7d-b57b-456d4e7c0410",
+      "name": "Contract Commitments",
+      "description": {
+        "content": "Endpoints for querying contract commitment data, a supplemental dataset introduced in FOCUS v1.3 that isolates contract terms from cost and usage rows.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f5fbcb4-6be2-423f-87e1-dc5e9a95d81a",
+          "name": "FinOps Foundation List contract commitment records",
+          "request": {
+            "name": "FinOps Foundation List contract commitment records",
+            "description": {
+              "content": "Retrieves contract commitment records as defined in the FOCUS v1.3 supplemental dataset. Contract commitments isolate contract terms such as start and end dates, remaining units, and descriptions from cost and usage rows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contract-commitments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "commitmentDiscountId",
+                  "value": "<string>",
+                  "description": "Filter by the identifier assigned to a commitment discount by the provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "billingAccountId",
+                  "value": "<string>",
+                  "description": "Filter by the unique identifier for a billing account."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "1000",
+                  "description": "Number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Token for retrieving the next page of results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4623b599-cbb5-4c0b-90b6-40ee0b1cdc72",
+              "name": "A paginated list of contract commitment records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contract-commitments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "commitmentDiscountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"CommitmentDiscountId\": \"string\",\n      \"CommitmentStartDate\": \"1977-03-06T09:52:19.547Z\",\n      \"CommitmentEndDate\": \"2014-09-09T17:16:50.470Z\",\n      \"BillingAccountId\": \"string\",\n      \"ProviderName\": \"string\",\n      \"CommitmentDiscountName\": \"string\",\n      \"CommitmentDiscountType\": \"string\",\n      \"CommitmentDiscountCategory\": \"Spend\",\n      \"CommitmentTotalQuantity\": 7638.504629790872,\n      \"CommitmentRemainingQuantity\": 2569.716160058011,\n      \"CommitmentUnit\": \"string\",\n      \"CommitmentDescription\": \"string\",\n      \"BillingAccountName\": \"string\"\n    },\n    {\n      \"CommitmentDiscountId\": \"string\",\n      \"CommitmentStartDate\": \"1989-08-24T17:24:56.296Z\",\n      \"CommitmentEndDate\": \"2002-02-11T00:56:04.284Z\",\n      \"BillingAccountId\": \"string\",\n      \"ProviderName\": \"string\",\n      \"CommitmentDiscountName\": \"string\",\n      \"CommitmentDiscountType\": \"string\",\n      \"CommitmentDiscountCategory\": \"Spend\",\n      \"CommitmentTotalQuantity\": 9397.278446434977,\n      \"CommitmentRemainingQuantity\": 2208.330134422688,\n      \"CommitmentUnit\": \"string\",\n      \"CommitmentDescription\": \"string\",\n      \"BillingAccountName\": \"string\"\n    }\n  ],\n  \"nextPageToken\": \"string\",\n  \"totalRecords\": 473\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10743491-759a-4e65-8f4e-66276ac96cda",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contract-commitments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "commitmentDiscountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55054cf9-a504-4597-af2b-b68796558960",
+              "name": "Authentication required.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contract-commitments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "commitmentDiscountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billingAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.example.com/focus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1d4c521f-cb70-4637-9725-a68b03702173",
+    "name": "FinOps Foundation FOCUS Cost and Usage Contract Commitments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An API modeled on the FinOps Open Cost and Usage Specification (FOCUS) v1.3, which defines a standard schema for cloud, SaaS, and other technology billing data. FOCUS normalizes billing datasets across providers to reduce complexity for FinOps practitioners. This specification models the Cost and Usage dataset and the Contract Commitment dataset defined by the FOCUS standard, enabling programmatic access to FOCUS-compliant billing data. The FOCUS specification is maintained by the FinOps Foundation under the Linux Foundation.\n\nContact Support:\n Name: FinOps Foundation",
+      "type": "text/plain"
+    }
+  }
+}

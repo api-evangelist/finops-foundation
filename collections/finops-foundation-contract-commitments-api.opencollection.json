@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FinOps Foundation FOCUS Cost and Usage Contract Commitments API",
+    "version": "1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contract Commitments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "FinOps Foundation List contract commitment records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.example.com/focus/v1/contract-commitments",
+            "params": [
+              {
+                "name": "commitmentDiscountId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the identifier assigned to a commitment discount by the provider."
+              },
+              {
+                "name": "billingAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the unique identifier for a billing account."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for retrieving the next page of results."
+              }
+            ]
+          },
+          "docs": "Retrieves contract commitment records as defined in the FOCUS v1.3 supplemental dataset. Contract commitments isolate contract terms such as start and end dates, remaining units, and descriptions from cost and usage rows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

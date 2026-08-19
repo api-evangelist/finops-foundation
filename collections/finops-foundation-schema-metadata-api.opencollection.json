@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FinOps Foundation FOCUS Cost and Usage Contract Commitments Schema Metadata API",
+    "version": "1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schema Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "FinOps Foundation Get FOCUS schema metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.example.com/focus/v1/schema"
+          },
+          "docs": "Retrieves metadata about the FOCUS dataset schema, including column definitions, data types, FOCUS version, and data generator version information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

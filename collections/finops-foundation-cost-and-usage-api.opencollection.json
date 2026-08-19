@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FinOps Foundation FOCUS Contract Commitments Cost and Usage API",
+    "version": "1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cost and Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "FinOps Foundation List cost and usage records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.example.com/focus/v1/cost-and-usage",
+            "params": [
+              {
+                "name": "billingPeriodStart",
+                "value": "",
+                "type": "query",
+                "description": "Filter by billing period start date (inclusive). Format is date-time per RFC 3339."
+              },
+              {
+                "name": "billingPeriodEnd",
+                "value": "",
+                "type": "query",
+                "description": "Filter by billing period end date (exclusive). Format is date-time per RFC 3339."
+              },
+              {
+                "name": "chargeCategory",
+                "value": "",
+                "type": "query",
+                "description": "Filter by charge category (e.g., Usage, Purchase, Tax, Credit, Adjustment)."
+              },
+              {
+                "name": "providerName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the name of the entity that made the resource or service available."
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the display name of the service that was purchased."
+              },
+              {
+                "name": "serviceCategory",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the highest-level classification of a service (e.g., Compute, Storage, Networking, Database)."
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the isolated geographic area where a resource is provisioned or a service is provided."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by unique identifier assigned to a resource by the provider."
+              },
+              {
+                "name": "subAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the identifier for a sub account."
+              },
+              {
+                "name": "billingCurrency",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the currency that a charge was billed in."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for retrieving the next page of results."
+              }
+            ]
+          },
+          "docs": "Retrieves FOCUS-compliant cost and usage records. The response conforms to the FOCUS Cost and Usage dataset schema, providing normalized billing data with standardized columns for dimensions and metrics."
+        },
+        {
+          "info": {
+            "name": "FinOps Foundation Export cost and usage data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.example.com/focus/v1/cost-and-usage/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates an export of FOCUS-compliant cost and usage data for a specified billing period. Returns a job identifier that can be used to check the status and retrieve the exported data."
+        },
+        {
+          "info": {
+            "name": "FinOps Foundation Get cost and usage export job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.example.com/focus/v1/cost-and-usage/export/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the export job."
+              }
+            ]
+          },
+          "docs": "Retrieves the status of a previously initiated cost and usage data export job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
