@@ -1,0 +1,35 @@
+slug: finops-foundation
+provider: FinOps Foundation
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Cost and Usage
+  spec_file: finops-foundation-cost-and-usage-api-openapi.yml
+  capability_id: BC-600.80
+  capability_id_l1: BC-600
+  capability_name: IT Financial Management
+  confidence: 0.85
+  evidence: GET /cost-and-usage  listCostAndUsage ... 'defines a standard schema for cloud, SaaS, and
+    other technology billing data'
+  reason: Programmatic access to normalized cloud cost and usage billing data is core IT spend visibility
+    and cost optimisation — IT Financial Management.
+- tag: Contract Commitments
+  spec_file: finops-foundation-contract-commitments-api-openapi.yml
+  capability_id: BC-600.80
+  capability_id_l1: BC-600
+  capability_name: IT Financial Management
+  confidence: 0.7
+  evidence: GET /contract-commitments  listContractCommitments ... ContractCommitmentRecord
+  reason: FOCUS contract commitment records (cloud spend commitments/discount agreements) are consumed
+    for cloud financial management, which maps to IT Financial Management (IT spend, cost optimisation).
