@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: FinOps Foundation FOCUS Cost and Usage Contract Commitments API
-  description: An API modeled on the FinOps Open Cost and Usage Specification (FOCUS) v1.3, which defines a standard schema for cloud, SaaS, and other technology billing data. FOCUS normalizes billing datasets across providers to reduce complexity for FinOps practitioners. This specification models the Cost and Usage dataset and the Contract Commitment dataset defined by the FOCUS standard, enabling programmatic access to FOCUS-compliant billing data. The FOCUS specification is maintained by the FinOps Foundation under the Linux Foundation.
+  title: FinOps Foundation FOCUS Cost and Usage Contract Commitments…
+  description: An API modeled on the FinOps Open Cost and Usage Specification (FOCUS) v1.3, which defines a standard schema for cloud, SaaS, and other technology billing data.
   version: 1.3.0
   contact:
     name: FinOps Foundation
@@ -76,6 +76,22 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          nullable: true
+          description: Additional details about the error.
+      required:
+      - code
+      - message
     ContractCommitmentRecord:
       type: object
       description: A contract commitment record as defined in FOCUS v1.3. Isolates contract terms including start and end dates, remaining units, and descriptions from cost and usage rows.
@@ -153,22 +169,6 @@ components:
           description: Total number of records matching the query.
       required:
       - data
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          nullable: true
-          description: Additional details about the error.
-      required:
-      - code
-      - message
   securitySchemes:
     bearerAuth:
       type: http
