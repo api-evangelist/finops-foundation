@@ -72,6 +72,22 @@ components:
       required:
       - focusVersion
       - columns
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          nullable: true
+          description: Additional details about the error.
+      required:
+      - code
+      - message
     ColumnDefinition:
       type: object
       properties:
@@ -110,22 +126,6 @@ components:
       - dataType
       - requirement
       - nullable
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          nullable: true
-          description: Additional details about the error.
-      required:
-      - code
-      - message
   securitySchemes:
     bearerAuth:
       type: http

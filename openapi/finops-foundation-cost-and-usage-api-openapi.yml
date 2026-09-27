@@ -197,114 +197,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ExportRequest:
-      type: object
-      properties:
-        billingPeriodStart:
-          type: string
-          format: date-time
-          description: The inclusive start of the billing period to export.
-        billingPeriodEnd:
-          type: string
-          format: date-time
-          description: The exclusive end of the billing period to export.
-        format:
-          type: string
-          enum:
-          - csv
-          - parquet
-          - json
-          default: csv
-          description: The output format for the exported data.
-        includeContractCommitments:
-          type: boolean
-          default: false
-          description: Whether to include contract commitment data in the export.
-      required:
-      - billingPeriodStart
-      - billingPeriodEnd
-    CostAndUsageResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CostAndUsageRecord'
-        nextPageToken:
-          type: string
-          description: Token to retrieve the next page of results. Null if no more pages.
-          nullable: true
-        totalRecords:
-          type: integer
-          description: Total number of records matching the query.
-        dataLastUpdated:
-          type: string
-          format: date-time
-          description: Timestamp indicating when the dataset was last updated.
-        dataCompleteness:
-          type: string
-          enum:
-          - Complete
-          - Incomplete
-          description: Indicates whether the data for the requested period is complete or subject to revision.
-      required:
-      - data
-    ExportJobResponse:
-      type: object
-      properties:
-        jobId:
-          type: string
-          description: The unique identifier for the export job.
-        status:
-          type: string
-          enum:
-          - Pending
-          - Processing
-          - Complete
-          - Failed
-          description: The current status of the export job.
-        createdAt:
-          type: string
-          format: date-time
-          description: When the export job was created.
-        completedAt:
-          type: string
-          format: date-time
-          nullable: true
-          description: When the export job completed.
-        downloadUrl:
-          type: string
-          format: uri
-          nullable: true
-          description: The URL to download the exported data. Only available when status is Complete.
-        recordCount:
-          type: integer
-          nullable: true
-          description: The total number of records in the export.
-        error:
-          type: string
-          nullable: true
-          description: Error message if the export job failed.
-      required:
-      - jobId
-      - status
-      - createdAt
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          nullable: true
-          description: Additional details about the error.
-      required:
-      - code
-      - message
     CostAndUsageRecord:
       type: object
       description: A single cost and usage record conforming to the FOCUS specification. Contains dimensions (qualitative values for categorization and filtering) and metrics (quantitative values for measurement).
@@ -528,6 +420,114 @@ components:
       - ProviderName
       - ServiceCategory
       - ServiceName
+    ExportRequest:
+      type: object
+      properties:
+        billingPeriodStart:
+          type: string
+          format: date-time
+          description: The inclusive start of the billing period to export.
+        billingPeriodEnd:
+          type: string
+          format: date-time
+          description: The exclusive end of the billing period to export.
+        format:
+          type: string
+          enum:
+          - csv
+          - parquet
+          - json
+          default: csv
+          description: The output format for the exported data.
+        includeContractCommitments:
+          type: boolean
+          default: false
+          description: Whether to include contract commitment data in the export.
+      required:
+      - billingPeriodStart
+      - billingPeriodEnd
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          nullable: true
+          description: Additional details about the error.
+      required:
+      - code
+      - message
+    ExportJobResponse:
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: The unique identifier for the export job.
+        status:
+          type: string
+          enum:
+          - Pending
+          - Processing
+          - Complete
+          - Failed
+          description: The current status of the export job.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the export job was created.
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the export job completed.
+        downloadUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL to download the exported data. Only available when status is Complete.
+        recordCount:
+          type: integer
+          nullable: true
+          description: The total number of records in the export.
+        error:
+          type: string
+          nullable: true
+          description: Error message if the export job failed.
+      required:
+      - jobId
+      - status
+      - createdAt
+    CostAndUsageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostAndUsageRecord'
+        nextPageToken:
+          type: string
+          description: Token to retrieve the next page of results. Null if no more pages.
+          nullable: true
+        totalRecords:
+          type: integer
+          description: Total number of records matching the query.
+        dataLastUpdated:
+          type: string
+          format: date-time
+          description: Timestamp indicating when the dataset was last updated.
+        dataCompleteness:
+          type: string
+          enum:
+          - Complete
+          - Incomplete
+          description: Indicates whether the data for the requested period is complete or subject to revision.
+      required:
+      - data
   securitySchemes:
     bearerAuth:
       type: http
