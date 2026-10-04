@@ -76,6 +76,38 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          nullable: true
+          description: Additional details about the error.
+      required:
+      - code
+      - message
+    ContractCommitmentResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractCommitmentRecord'
+        nextPageToken:
+          type: string
+          nullable: true
+          description: Token to retrieve the next page of results.
+        totalRecords:
+          type: integer
+          description: Total number of records matching the query.
+      required:
+      - data
     ContractCommitmentRecord:
       type: object
       description: A contract commitment record as defined in FOCUS v1.3. Isolates contract terms including start and end dates, remaining units, and descriptions from cost and usage rows.
@@ -137,38 +169,6 @@ components:
       - CommitmentEndDate
       - BillingAccountId
       - ProviderName
-    ContractCommitmentResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContractCommitmentRecord'
-        nextPageToken:
-          type: string
-          nullable: true
-          description: Token to retrieve the next page of results.
-        totalRecords:
-          type: integer
-          description: Total number of records matching the query.
-      required:
-      - data
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          nullable: true
-          description: Additional details about the error.
-      required:
-      - code
-      - message
   securitySchemes:
     bearerAuth:
       type: http

@@ -197,48 +197,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    CostAndUsageResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CostAndUsageRecord'
-        nextPageToken:
-          type: string
-          description: Token to retrieve the next page of results. Null if no more pages.
-          nullable: true
-        totalRecords:
-          type: integer
-          description: Total number of records matching the query.
-        dataLastUpdated:
-          type: string
-          format: date-time
-          description: Timestamp indicating when the dataset was last updated.
-        dataCompleteness:
-          type: string
-          enum:
-          - Complete
-          - Incomplete
-          description: Indicates whether the data for the requested period is complete or subject to revision.
-      required:
-      - data
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-        message:
-          type: string
-          description: A human-readable error message.
-        details:
-          type: string
-          nullable: true
-          description: Additional details about the error.
-      required:
-      - code
-      - message
     ExportJobResponse:
       type: object
       properties:
@@ -305,6 +263,32 @@ components:
       required:
       - billingPeriodStart
       - billingPeriodEnd
+    CostAndUsageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostAndUsageRecord'
+        nextPageToken:
+          type: string
+          description: Token to retrieve the next page of results. Null if no more pages.
+          nullable: true
+        totalRecords:
+          type: integer
+          description: Total number of records matching the query.
+        dataLastUpdated:
+          type: string
+          format: date-time
+          description: Timestamp indicating when the dataset was last updated.
+        dataCompleteness:
+          type: string
+          enum:
+          - Complete
+          - Incomplete
+          description: Indicates whether the data for the requested period is complete or subject to revision.
+      required:
+      - data
     CostAndUsageRecord:
       type: object
       description: A single cost and usage record conforming to the FOCUS specification. Contains dimensions (qualitative values for categorization and filtering) and metrics (quantitative values for measurement).
@@ -528,6 +512,22 @@ components:
       - ProviderName
       - ServiceCategory
       - ServiceName
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+        message:
+          type: string
+          description: A human-readable error message.
+        details:
+          type: string
+          nullable: true
+          description: Additional details about the error.
+      required:
+      - code
+      - message
   securitySchemes:
     bearerAuth:
       type: http
