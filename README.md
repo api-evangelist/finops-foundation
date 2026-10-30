@@ -1,4 +1,4 @@
-# FinOps Foundation (finops-foundation)
+# FinOps Foundation
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,61 +66,137 @@
 
 The FinOps Foundation aims to help organizations optimize their cloud spending and improve cloud financial management practices. By providing education, tools, and resources, the foundation equips teams with the skills and knowledge needed to effectively manage cloud costs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/finops-foundation/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/finops-foundation/refs/heads/main/apis.yml)
+**Areas:** Budgets · Costs · FinOps
 
-## Scope
+## FinOps Foundation on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for FinOps Foundation is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/finops-foundation/](https://apis.io/providers/finops-foundation/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Budgets
-- Costs
-- FinOps
+- [FinOps Foundation Contract Commitments API](https://apis.io/apis/finops-foundation/finops-foundation-contract-commitments-api/) — Endpoints for querying contract commitment data, a supplemental dataset introduced in FOCUS v1.3 that isolates contract terms from cost and usage rows.
+- [FinOps Foundation Cost and Usage API](https://apis.io/apis/finops-foundation/finops-foundation-cost-and-usage-api/) — Endpoints for querying FOCUS-compliant cost and usage data, the primary dataset defined by the FOCUS specification.
+- [FinOps Foundation Schema Metadata API](https://apis.io/apis/finops-foundation/finops-foundation-schema-metadata-api/) — Endpoints for retrieving metadata about the FOCUS dataset schema, including column definitions, data types, and version information.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-01-02
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### FOCUS Cost and Usage API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-An API modeled on the FinOps Open Cost and Usage Specification (FOCUS) v1.3, the open standard maintained by the FinOps Foundation under the Linux Foundation that defines a common schema for cloud, SaaS, and other technology billing data.
+- [Finops Foundation Agentic Access](https://apis.io/agentic-access/finops-foundation/finops-foundation-agentic-access/)
 
-- **Human URL:** [https://focus.finops.org/](https://focus.finops.org/)
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Billing
-- Budgets
-- Cloud
-- Costs
-- FinOps
-- FOCUS
+- [FOCUS Contract Commitment Record](https://apis.io/schemas/finops-foundation/finops-foundation-contract-commitment-record/)
+- [FOCUS Cost and Usage Record](https://apis.io/schemas/finops-foundation/finops-foundation-cost-and-usage-record/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://focus.finops.org/focus-specification/v1-3/)
-- [OpenAPI](openapi/finops-foundation-focus-cost-and-usage-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/finops-foundation-focus-cost-and-usage.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/finops-foundation-focus-cost-and-usage.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub Repository](https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec)
-- [Reference](https://focus.finops.org/focus-columns/)
-- [JSON Schema](json-schema/finops-foundation-cost-and-usage-record-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/finops-foundation-contract-commitment-record-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/finops-foundation-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Linked-data contexts for the provider's vocabulary.
 
-## Common Properties
+- [Finops Foundation Context](https://apis.io/jsonld/finops-foundation/finops-foundation-context/)
 
-- [LinkedIn](https://www.linkedin.com/company/finops-foundation)
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [FinOps Foundation FOCUS Cost and Usage Contract Commitments API](https://apis.io/collections/finops-foundation/open-finops-foundation-contract-commitments-api/)
+- [FinOps Foundation FOCUS Contract Commitments Cost and Usage API](https://apis.io/collections/finops-foundation/open-finops-foundation-cost-and-usage-api/)
+- [FinOps Foundation FOCUS Cost and Usage API](https://apis.io/collections/finops-foundation/open-finops-foundation-focus-cost-and-usage/)
+- [FinOps Foundation FOCUS Cost and Usage Contract Commitments Schema Metadata API](https://apis.io/collections/finops-foundation/open-finops-foundation-schema-metadata-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [FinOps Foundation — jsonschema rules](https://apis.io/rules/finops-foundation/finops-foundation-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Finops Foundation Authentication](https://apis.io/security/finops-foundation/finops-foundation-authentication/)
+- [Finops Foundation Domain Security](https://apis.io/security/finops-foundation/finops-foundation-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Finops Foundation Plans Pricing](https://apis.io/plans/finops-foundation/finops-foundation-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Finops Foundation Rate Limits](https://apis.io/rate-limits/finops-foundation/finops-foundation-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops Foundation Finops](https://apis.io/finops/finops-foundation/finops-foundation-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.finops.org/)
-- [Community](https://www.finops.org/community/)
+- [Blog](https://www.finops.org/feed/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 60.5 |
+| Contract governance | 9.8 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 7.9 |
+
+**Agent readiness 23.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/finops-foundation/](https://apis.io/providers/finops-foundation/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for FinOps Foundation: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/finops-foundation/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
